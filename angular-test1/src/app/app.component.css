@@ -1,0 +1,49 @@
+table {
+  width: 100%;
+}
+
+.column-title {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.today-change {
+  margin-top: 8px;
+}
+
+.cell-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  background-color: rgb(229, 229, 229);
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.load-more-rows {
+  text-align: center;
+  font-weight: 500;
+  color: #0f8ec7;
+  cursor: pointer;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.neutral {
+  color: grey;
+}
+
+.account-number {
+  font-weight: 800;
+  color: #0f8ec7;
+}

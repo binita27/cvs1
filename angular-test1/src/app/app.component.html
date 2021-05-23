@@ -1,0 +1,57 @@
+<table
+  (matSortChange)="accountNumberSortChange($event)"
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="accountNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-title">
+      Account Number
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="account-number">
+        {{ element.accountNumber }}
+      </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="availableCash">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <div class="cell-wrapper">
+        <div class="column-title">Available Cash</div>
+        <div class="today-change">Today's change</div>
+      </div>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="cell-wrapper">
+        <div>{{ element.availableCash | currency }}</div>
+        <div
+          [ngClass]="{
+            negative: element.todaysChange === 'negative',
+            positive: element.todaysChange === 'positive',
+            none: element.todaysChange === 'none'
+          }"
+        >
+          <span *ngIf="element.todaysChange === 'positive'">+</span>
+          <span *ngIf="element.todaysChange === 'negative'">-</span>
+          {{ element.todaysChangePercentage }} /
+          {{ element.todaysChangeValue | currency }}
+        </div>
+      </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="showmore">
+    <td mat-footer-cell class="load-more-rows" *matFooterCellDef colspan="2">
+      <div *ngIf="isShowMore">Show More</div>
+    </td>
+  </ng-container>
+  <tr
+    mat-header-row
+    class="table-header"
+    *matHeaderRowDef="displayedColumns"
+  ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <div>
+    <tr (click)="showAll()" mat-footer-row *matFooterRowDef="['showmore']"></tr>
+  </div>
+</table>
